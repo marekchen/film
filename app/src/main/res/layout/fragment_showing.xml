@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     tools:context="com.droi.film.fragment.ShowingFragment">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="right|center_vertical"
@@ -14,9 +14,13 @@
             android:id="@+id/banner"
             layout="@layout/view_banner_main"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:id="@+id/films"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/toolbar" />
+            android:orientation="vertical" />
 
-    </LinearLayout>
+    </ScrollView>
 </FrameLayout>
-

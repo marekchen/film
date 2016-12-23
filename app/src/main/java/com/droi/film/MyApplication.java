@@ -9,7 +9,7 @@ import com.droi.guide.model.Comment;
 import com.droi.guide.model.FavoriteRelation;
 import com.droi.guide.model.FollowPeopleRelation;
 import com.droi.guide.model.FollowQuestionRelation;
-import com.droi.guide.model.GuideUser;
+import com.droi.guide.model.FileUser;
 import com.droi.guide.model.LikeCommentRelation;
 import com.droi.guide.model.Question;
 import com.droi.guide.qiniu.Auth;
@@ -51,7 +51,7 @@ public class MyApplication extends Application {
         DroiObject.registerCustomClass(FavoriteRelation.class);
         DroiObject.registerCustomClass(FollowPeopleRelation.class);
         DroiObject.registerCustomClass(FollowQuestionRelation.class);
-        DroiObject.registerCustomClass(GuideUser.class);
+        DroiObject.registerCustomClass(FileUser.class);
         DroiObject.registerCustomClass(LikeCommentRelation.class);
         DroiObject.registerCustomClass(Question.class);
         DroiObject.registerCustomClass(CloudRelation.Response.class);
@@ -83,7 +83,7 @@ public class MyApplication extends Application {
         DroiObject.registerCustomClass(FavoriteRelation.class);
         DroiObject.registerCustomClass(FollowPeopleRelation.class);
         DroiObject.registerCustomClass(FollowQuestionRelation.class);
-        DroiObject.registerCustomClass(GuideUser.class);
+        DroiObject.registerCustomClass(FileUser.class);
         DroiObject.registerCustomClass(LikeCommentRelation.class);
         DroiObject.registerCustomClass(Question.class);
         DroiObject.registerCustomClass(CloudRelation.Response.class);
