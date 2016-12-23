@@ -1,0 +1,82 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.droi.film.fragment.FilmIndexFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="100dp"
+            android:layout_height="150dp" />
+
+        <RelativeLayout
+            android:id="@+id/start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/image"
+            android:layout_toRightOf="@id/image"
+            android:orientation="horizontal">
+
+            <RatingBar
+                android:id="@+id/rating_bar"
+                style="@android:style/Widget.Holo.Light.RatingBar.Small"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/rating_star"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_toEndOf="@id/rating_bar"
+                android:layout_toRightOf="@id/rating_bar"
+                android:text="10.0" />
+
+            <TextView
+                android:id="@+id/rating_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_toEndOf="@id/rating_star"
+                android:layout_toRightOf="@id/rating_star"
+                android:text="(人评分)" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/start"
+            android:layout_toEndOf="@id/image"
+            android:layout_toRightOf="@id/image"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2016-12-16" />
+
+            <TextView
+                android:id="@+id/genres"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="剧情" />
+
+            <TextView
+                android:id="@+id/countries"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="美国" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/image"
+            android:text="介绍" />
+    </RelativeLayout>
+
+</ScrollView>
