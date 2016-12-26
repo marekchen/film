@@ -9,14 +9,14 @@ import com.droi.sdk.core.DroiUser;
 /**
  * Created by chenpei on 16/8/31.
  */
-public class FileUser extends DroiUser implements Parcelable {
+public class FilmUser extends DroiUser implements Parcelable {
 
     @DroiExpose
     public DroiFile avatar;
     @DroiExpose
     public String userName; //nick name
 
-    public FileUser() {
+    public FilmUser() {
 
     }
 }
