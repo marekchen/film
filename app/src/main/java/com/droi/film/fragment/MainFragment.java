@@ -11,9 +11,9 @@ import com.droi.film.R;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class MainActivityFragment extends Fragment {
+public class MainFragment extends Fragment {
 
-    public MainActivityFragment() {
+    public MainFragment() {
     }
 
     @Override

@@ -2,6 +2,12 @@ package com.droi.film;
 
 import android.app.Application;
 
+import com.droi.film.model.CastBean;
+import com.droi.film.model.FilmBean;
+import com.droi.sdk.core.Core;
+import com.droi.sdk.core.DroiObject;
+import com.droi.sdk.core.DroiReferenceObject;
+
 /*import com.droi.guide.model.Article;
 import com.droi.guide.model.Banner;
 import com.droi.guide.model.CloudRelation;
@@ -35,6 +41,10 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Core.initialize(this);
+        DroiObject.registerCustomClass(FilmBean.class);
+        DroiObject.registerCustomClass(CastBean.class);
+
         /*TCAgent.LOG_ON=true;
         // App ID: 在TalkingData创建应用后，进入数据报表页中，在“系统设置”-“编辑应用”页面里查看App ID。
         // 渠道 ID: 是渠道标识符，可通过不同渠道单独追踪数据。

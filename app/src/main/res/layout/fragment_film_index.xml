@@ -6,77 +6,192 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="@dimen/fragment_margin">
 
         <ImageView
-            android:id="@+id/image"
+            android:id="@+id/iv_movie"
             android:layout_width="100dp"
-            android:layout_height="150dp" />
+            android:layout_height="140dp" />
 
         <RelativeLayout
-            android:id="@+id/start"
+            android:id="@+id/info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/image"
-            android:layout_toRightOf="@id/image"
+            android:layout_marginLeft="@dimen/film_index_text_margin_left"
+            android:layout_marginStart="@dimen/film_index_text_margin_left"
+            android:layout_toEndOf="@id/iv_movie"
+            android:layout_toRightOf="@id/iv_movie"
             android:orientation="horizontal">
 
             <RatingBar
                 android:id="@+id/rating_bar"
                 style="@android:style/Widget.Holo.Light.RatingBar.Small"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="1dp"
+                android:layout_marginStart="1dp" />
 
             <TextView
-                android:id="@+id/rating_star"
+                android:id="@+id/tv_rating_star"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
+                android:layout_marginLeft="@dimen/film_index_text_margin_left"
+                android:layout_marginStart="@dimen/film_index_text_margin_left"
                 android:layout_toEndOf="@id/rating_bar"
                 android:layout_toRightOf="@id/rating_bar"
-                android:text="10.0" />
+                android:text="10.0"
+                android:textSize="@dimen/film_index_text_size" />
 
             <TextView
-                android:id="@+id/rating_count"
+                android:id="@+id/tv_rating_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:layout_toEndOf="@id/rating_star"
-                android:layout_toRightOf="@id/rating_star"
-                android:text="(人评分)" />
+                android:layout_marginLeft="@dimen/film_index_text_margin_left"
+                android:layout_marginStart="@dimen/film_index_text_margin_left"
+                android:layout_toEndOf="@id/tv_rating_star"
+                android:layout_toRightOf="@id/tv_rating_star"
+                android:text="(人评分)"
+                android:textSize="@dimen/film_index_text_size" />
         </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/start"
-            android:layout_toEndOf="@id/image"
-            android:layout_toRightOf="@id/image"
+            android:layout_below="@id/info"
+            android:layout_marginLeft="@dimen/film_index_text_margin_left"
+            android:layout_marginStart="@dimen/film_index_text_margin_left"
+            android:layout_toEndOf="@id/iv_movie"
+            android:layout_toRightOf="@id/iv_movie"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_release_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/film_index_text_margin_top"
+                android:text="2016-12-16"
+                android:textSize="@dimen/film_index_text_size" />
+
+            <TextView
+                android:id="@+id/tv_genres"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/film_index_text_margin_top"
+                android:text="剧情"
+                android:textSize="@dimen/film_index_text_size" />
+
+            <TextView
+                android:id="@+id/tv_countries"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/film_index_text_margin_top"
+                android:text="美国"
+                android:textSize="@dimen/film_index_text_size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv_movie"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="55dp"
+                android:layout_weight="1"
+                android:text="想看" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="55dp"
+                android:layout_weight="1"
+                android:text="看过了" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/brief"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/button"
+            android:layout_marginTop="@dimen/card_margin"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="2016-12-16" />
+                android:text="剧情简介"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
-            <TextView
-                android:id="@+id/genres"
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="剧情" />
+                android:layout_marginBottom="@dimen/card_margin"
+                android:layout_marginTop="@dimen/card_margin">
 
-            <TextView
-                android:id="@+id/countries"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="美国" />
+                <LinearLayout
+                    style="@style/Widget.CardContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_summary"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="5dp"
+                        android:text="" />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
         </LinearLayout>
 
-        <TextView
+        <LinearLayout
+            android:id="@+id/cast"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/image"
-            android:text="介绍" />
+            android:layout_below="@id/brief"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="演员"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/cast_recycle_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cast"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="评论"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/comment_recycle_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" />
+        </LinearLayout>
+
+
     </RelativeLayout>
 
 </ScrollView>

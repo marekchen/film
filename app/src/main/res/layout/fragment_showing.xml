@@ -1,26 +1,45 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="right|center_vertical"
+    android:orientation="vertical"
     tools:context="com.droi.film.fragment.ShowingFragment">
+    <!--
+            <include
+                android:id="@+id/banner"
+                layout="@layout/view_banner_main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />-->
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="right|center_vertical"
-        android:orientation="vertical">
-
-        <include
-            android:id="@+id/banner"
-            layout="@layout/view_banner_main"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <LinearLayout
+    <!--    <LinearLayout
             android:id="@+id/films"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" />
+            android:orientation="vertical">
 
-    </ScrollView>
-</FrameLayout>
+            <Button
+                android:id="@+id/upload"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="button" />
+
+            <Button
+                android:id="@+id/detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="跳转" />
+        </LinearLayout>-->
+    <!--<GridView
+        android:id="@+id/gv_movie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnWidth="80dp"
+        android:numColumns="auto_fit"
+        android:stretchMode="columnWidth" />-->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/movie_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</ScrollView>

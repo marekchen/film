@@ -1,6 +1,5 @@
 package com.droi.film.activity;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -15,15 +14,16 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.droi.film.R;
-import com.droi.film.fragment.MainActivityFragment;
+import com.droi.film.fragment.MainFragment;
 import com.droi.film.fragment.ShowingFragment;
+import com.droi.film.interfaces.OnFragmentInteractionListener;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements ShowingFragment.OnFragmentInteractionListener{
+public class MainActivity extends AppCompatActivity implements OnFragmentInteractionListener {
 
     @BindView(R.id.tabs)
     public TabLayout mTabLayout;
@@ -51,10 +51,12 @@ public class MainActivity extends AppCompatActivity implements ShowingFragment.O
         for (int i = 0; i < mTitleList.size(); i++) {
             mTabLayout.addTab(mTabLayout.newTab().setText(mTitleList.get(i)));//添加tab选项卡
         }
+
         fragmentList = new ArrayList<>();
         Fragment btFragment1 = ShowingFragment.newInstance("showing");
         Fragment btFragment2 = ShowingFragment.newInstance("coming");
-        Fragment btFragment3 = new MainActivityFragment();
+        //Fragment btFragment2 = FilmIndexFragment.newInstance(filmBean);
+        Fragment btFragment3 = new MainFragment();
 
         fragmentList.add(btFragment1);
         fragmentList.add(btFragment2);
@@ -74,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements ShowingFragment.O
     }
 
     @Override
-    public void onFragmentInteraction(Uri uri) {
+    public void onFragmentInteraction(int action) {
 
     }
 
