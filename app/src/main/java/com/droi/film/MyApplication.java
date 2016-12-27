@@ -2,10 +2,14 @@ package com.droi.film;
 
 import android.app.Application;
 
+import com.droi.film.model.Banner;
 import com.droi.film.model.CastBean;
+import com.droi.film.model.Comment;
 import com.droi.film.model.FilmBean;
+import com.droi.film.model.FilmUser;
 import com.droi.sdk.core.Core;
 import com.droi.sdk.core.DroiObject;
+import com.droi.sdk.core.DroiPermission;
 import com.droi.sdk.core.DroiReferenceObject;
 
 /*import com.droi.guide.model.Article;
@@ -44,7 +48,16 @@ public class MyApplication extends Application {
         Core.initialize(this);
         DroiObject.registerCustomClass(FilmBean.class);
         DroiObject.registerCustomClass(CastBean.class);
-
+        DroiObject.registerCustomClass(FilmUser.class);
+        DroiObject.registerCustomClass(Comment.class);
+        DroiObject.registerCustomClass(Banner.class);
+        DroiPermission permission = DroiPermission.getDefaultPermission();
+        if (permission == null) {
+            permission = new DroiPermission();
+        }
+        permission.setPublicReadPermission(true);
+        permission.setPublicWritePermission(true);
+        DroiPermission.setDefaultPermission(permission);
         /*TCAgent.LOG_ON=true;
         // App ID: 在TalkingData创建应用后，进入数据报表页中，在“系统设置”-“编辑应用”页面里查看App ID。
         // 渠道 ID: 是渠道标识符，可通过不同渠道单独追踪数据。

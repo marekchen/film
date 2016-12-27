@@ -1,19 +1,16 @@
 package com.droi.film.model;
 
-import android.net.Uri;
-
 import com.droi.sdk.core.DroiExpose;
-/*
-import com.droi.sdk.core.DroiFile;
 import com.droi.sdk.core.DroiObject;
-import com.droi.sdk.core.DroiReference;*/
 
 /**
  * Created by chenpei on 16/8/31.
  */
-public class Banner {
+public class Banner extends DroiObject {
     @DroiExpose
     public String imageUrl;
+    @DroiExpose
+    public String redUrl;
 
     public String getImageUrl() {
         return imageUrl;
@@ -22,9 +19,12 @@ public class Banner {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
-    /*    @DroiReference
-    public DroiFile img;
-    @DroiReference
-    public Article ref;
-    public Uri imgUri;*/
+
+    public String getRedUrl() {
+        return redUrl;
+    }
+
+    public void setRedUrl(String redUrl) {
+        this.redUrl = redUrl;
+    }
 }

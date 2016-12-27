@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.droi.film.R;
 import com.droi.film.model.CastBean;
+import com.droi.sdk.core.DroiReferenceObject;
 
 import java.util.List;
 
@@ -37,7 +38,7 @@ public class CastAdapter extends RecyclerView.Adapter<CastAdapter.CastItemHolder
 
     @Override
     public void onBindViewHolder(CastItemHolder holder, int position) {
-        CastBean cast = mDataList.get(position);
+        CastBean cast = (CastBean) mDataList.get(position);
         holder.nameTextView.setText(cast.getName());
         Glide.with(mContext).load(cast.getAvatarUrl()).into(holder.avatarImageView);
     }

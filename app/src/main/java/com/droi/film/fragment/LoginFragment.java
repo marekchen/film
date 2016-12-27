@@ -57,7 +57,7 @@ public class LoginFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-       DroiAnalytics.onFragmentEnd(getActivity(), "LoginFragment");
+        DroiAnalytics.onFragmentEnd(getActivity(), "LoginFragment");
     }
 
     @Override
@@ -187,6 +187,7 @@ public class LoginFragment extends Fragment {
                 Toast.makeText(getActivity(), R.string.login_success, Toast.LENGTH_SHORT).show();
                 activity.finish();
             } else {
+                Log.i("chenpei", droiError.toString());
                 if (droiError.getCode() == DroiError.USER_NOT_EXISTS) {
                     mUserNameView.setError(getString(R.string.error_user_not_exists));
                     mUserNameView.requestFocus();

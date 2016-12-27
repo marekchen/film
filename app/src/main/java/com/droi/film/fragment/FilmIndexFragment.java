@@ -1,11 +1,11 @@
 package com.droi.film.fragment;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -83,7 +83,7 @@ public class FilmIndexFragment extends Fragment {
         unbinder = ButterKnife.bind(this, view);
         if (filmBean != null) {
             Glide.with(this)
-                    .load(filmBean.getImages()).into(movieImageView);
+                    .load(filmBean.getImage()).into(movieImageView);
             ratingStarTextView.setText("" + filmBean.getStar());
             ratingCountTextView.setText("" + filmBean.getCommentsCount());
             releaseTextView.setText(filmBean.getReleaseTime());
@@ -129,17 +129,34 @@ public class FilmIndexFragment extends Fragment {
             casts.add(ref2);
             casts.add(ref3);
             casts.add(ref4);*/
-            ArrayList<CastBean> casts = new ArrayList<>();
+            /*ArrayList<CastBean> casts = new ArrayList<>();
             casts.add(castBean);
             casts.add(castBean2);
             casts.add(castBean3);
-            casts.add(castBean4);
+            casts.add(castBean4);*/
+            ArrayList<CastBean> casts = convert(filmBean.getCasts());
+            Log.i("chenpei","123");
             RecyclerView.Adapter mAdapter = new CastAdapter(getActivity(), casts);
+            final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity()) {
+                @Override
+                public boolean canScrollVertically() {
+                    return false;
+                }
+            };
             castRecycleView.setAdapter(mAdapter);
-
-
+            castRecycleView.setLayoutManager(layoutManager);
         }
         return view;
+    }
+
+    public ArrayList<CastBean> convert(ArrayList<DroiReferenceObject> refs) {
+        ArrayList<CastBean> casts = new ArrayList<CastBean>();
+        if (refs != null) {
+            for (DroiReferenceObject ref : refs) {
+                casts.add((CastBean) ref.droiObject());
+            }
+        }
+        return casts;
     }
 
     @Override

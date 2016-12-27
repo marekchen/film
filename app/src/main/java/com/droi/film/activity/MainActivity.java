@@ -3,8 +3,6 @@ package com.droi.film.activity;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -14,7 +12,9 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.droi.film.R;
+import com.droi.film.adapter.MyFragmentPagerAdapter;
 import com.droi.film.fragment.MainFragment;
+import com.droi.film.fragment.MineFragment;
 import com.droi.film.fragment.ShowingFragment;
 import com.droi.film.interfaces.OnFragmentInteractionListener;
 
@@ -56,7 +56,9 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         Fragment btFragment1 = ShowingFragment.newInstance("showing");
         Fragment btFragment2 = ShowingFragment.newInstance("coming");
         //Fragment btFragment2 = FilmIndexFragment.newInstance(filmBean);
-        Fragment btFragment3 = new MainFragment();
+        Fragment btFragment3 = new MineFragment();
+
+        //Fragment btFragment3 = new MainFragment();
 
         fragmentList.add(btFragment1);
         fragmentList.add(btFragment2);
@@ -78,32 +80,6 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     @Override
     public void onFragmentInteraction(int action) {
 
-    }
-
-    class MyFragmentPagerAdapter extends FragmentPagerAdapter {
-        ArrayList<Fragment> list;
-        ArrayList<String> titles;
-
-        public MyFragmentPagerAdapter(FragmentManager fm, ArrayList<Fragment> list, ArrayList<String> titles) {
-            super(fm);
-            this.list = list;
-            this.titles = titles;
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return titles.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return list.size();
-        }
-
-        @Override
-        public Fragment getItem(int arg0) {
-            return list.get(arg0);
-        }
     }
 
     @Override

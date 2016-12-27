@@ -32,7 +32,7 @@
             android:layout_marginRight="16dp">
 
 
-            <com.droi.guide.views.CircleImageView
+            <com.droi.film.view.CircleImageView
                 android:id="@+id/head_icon"
                 android:layout_width="50dp"
                 android:layout_height="50dp"

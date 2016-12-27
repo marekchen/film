@@ -1,7 +1,5 @@
 package com.droi.film.model;
 
-import android.os.Parcelable;
-
 import com.droi.sdk.core.DroiExpose;
 import com.droi.sdk.core.DroiFile;
 import com.droi.sdk.core.DroiUser;
@@ -9,7 +7,7 @@ import com.droi.sdk.core.DroiUser;
 /**
  * Created by chenpei on 16/8/31.
  */
-public class FilmUser extends DroiUser implements Parcelable {
+public class FilmUser extends DroiUser {
 
     @DroiExpose
     public DroiFile avatar;

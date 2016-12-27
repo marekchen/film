@@ -102,10 +102,8 @@
     <string name="fragment_mine_title">我的</string>
     <string name="fragment_mine_login">点击头像登陆</string>
     <string name="fragment_mine_info">查看或编辑个人资料</string>
-    <string name="fragment_mine_follow">我的关注</string>
-    <string name="fragment_mine_favorite">我的收藏</string>
-    <string name="fragment_mine_answer">我的回答</string>
-    <string name="fragment_mine_question">我的提问</string>
+    <string name="fragment_mine_follow">我想看的</string>
+    <string name="fragment_mine_comment">我的评论</string>
     <string name="fragment_mine_updating">检查更新</string>
     <string name="fragment_mine_feedback">意见反馈</string>
     <string name="fragment_mine_push">推送设置</string>

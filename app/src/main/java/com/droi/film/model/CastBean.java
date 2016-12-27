@@ -2,7 +2,6 @@ package com.droi.film.model;
 
 import com.droi.sdk.core.DroiExpose;
 import com.droi.sdk.core.DroiObject;
-import com.droi.sdk.core.DroiReferenceObject;
 
 /**
  * Created by marek on 2016/12/26.

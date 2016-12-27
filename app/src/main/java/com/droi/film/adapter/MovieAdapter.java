@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -15,8 +14,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.droi.film.R;
+import com.droi.film.activity.FilmDetailActivity;
 import com.droi.film.model.Banner;
-import com.droi.film.model.CastBean;
 import com.droi.film.model.FilmBean;
 import com.droi.film.view.Indicator;
 
@@ -84,7 +83,7 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, final int position) {
         if (isHeader(position)) {
             //((HeaderViewHolder) viewHolder).getTextView().setText("This is the Header!!");
             final Indicator indicatorLayout = ((HeaderViewHolder) viewHolder).indicatorLayout;
@@ -118,8 +117,17 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         } else {
             ((BodyViewHolder) viewHolder).textView.setText(dataList.get(position - 1).getTitle());
+            //Log.i("chenpei", "》》" + ((CastBean) dataList.get(position - 1).getCasts().get(0).droiObject()).getName());
             ImageView imageView = ((BodyViewHolder) viewHolder).imageView;
-            Glide.with(mContext).load(dataList.get(position - 1).getImages()).into(imageView);
+            Glide.with(mContext).load(dataList.get(position - 1).getImage()).into(imageView);
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext, FilmDetailActivity.class);
+                    intent.putExtra("Film", dataList.get(position - 1));
+                    mContext.startActivity(intent);
+                }
+            });
         }
     }
 
@@ -175,7 +183,8 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             ButterKnife.bind(this, itemView);
         }
     }
-    class TapGestureListener extends GestureDetector.SimpleOnGestureListener {
+
+    private class TapGestureListener extends GestureDetector.SimpleOnGestureListener {
 
         @Override
         public boolean onSingleTapConfirmed(MotionEvent e) {

@@ -12,7 +12,7 @@
         android:layout_height="120dp"
         android:background="@color/top_bar_background">
 
-        <com.droi.guide.views.CircleImageView
+        <com.droi.film.view.CircleImageView
             android:id="@+id/head_icon"
             android:layout_width="@dimen/head_icon_size"
             android:layout_height="@dimen/head_icon_size"
@@ -106,7 +106,7 @@
 
     </RelativeLayout>
 
-    <RelativeLayout
+    <!--<RelativeLayout
         android:id="@+id/mine_frag_favorite"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -146,7 +146,7 @@
                 android:src="@drawable/profile_right_arrow_press" />
         </LinearLayout>
 
-    </RelativeLayout>
+    </RelativeLayout>-->
 
     <RelativeLayout
         android:id="@+id/mine_frag_answer"
@@ -171,7 +171,7 @@
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/mine_answer_icon"
             android:layout_marginLeft="16dp"
-            android:text="@string/fragment_mine_answer"
+            android:text="@string/fragment_mine_comment"
             android:textColor="@color/normal_font_color"
             android:textSize="18sp" />
 
@@ -189,7 +189,7 @@
 
     </RelativeLayout>
 
-    <RelativeLayout
+    <!--<RelativeLayout
         android:id="@+id/mine_frag_question"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -228,7 +228,7 @@
                 android:src="@drawable/profile_right_arrow_press" />
         </LinearLayout>
 
-    </RelativeLayout>
+    </RelativeLayout>-->
 
     <RelativeLayout
         android:id="@+id/mine_frag_feedback"

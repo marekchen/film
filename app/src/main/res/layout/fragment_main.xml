@@ -11,5 +11,10 @@
     tools:context="com.droi.film.activity.MainActivity"
     tools:showIn="@layout/activity_main">
 
+    <Button
+        android:id="@+id/upload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="upload" />
 
 </RelativeLayout>
