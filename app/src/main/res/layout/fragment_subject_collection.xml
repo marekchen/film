@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="vertical"
+                  android:paddingLeft="14.0dip"
+                  android:paddingRight="14.0dip"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content">
+        <RelativeLayout android:orientation="horizontal"
+                        android:id="@+id/v_header"
+                        android:background="@drawable/subject_content_background"
+                        android:padding="10.0dip"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15.0dip">
+            <RatingBar android:id="@+id/rb_review_rating"
+                       android:clickable="true"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginRight="5.0dip"
+                       android:stepSize="1.0"
+                       android:layout_centerInParent="true"
+                       style="@style/Subject.RatingBar"
+                       android:isIndicator="false"/>
+        </RelativeLayout>
+        <LinearLayout android:orientation="horizontal"
+                      android:background="@drawable/subject_content_background"
+                      android:padding="10.0dip"
+                      android:layout_width="fill_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="15.0dip">
+            <ImageView android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:src="@drawable/ic_post_edit"
+                       android:scaleType="fitCenter" />
+            <EditText android:textColor="@color/subject_action_text_color"
+                      android:gravity="center|left|top"
+                      android:id="@+id/et_reviewSummary"
+                      android:layout_width="fill_parent"
+                      android:layout_height="wrap_content"
+                      android:hint="@string/write_comment_hint"
+                      android:minLines="5"
+                      style="@style/TextNormal" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_submit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="40dp"
+            android:text="提交"/>
+        <!--<FrameLayout android:id="@+id/v_place"-->
+                     <!--android:background="@drawable/subject_content_background"-->
+                     <!--android:padding="10.0dip"-->
+                     <!--android:layout_width="fill_parent"-->
+                     <!--android:layout_height="wrap_content"-->
+                     <!--android:layout_marginTop="15.0dip"-->
+                     <!--android:foreground="@drawable/list_selector_holo_light">-->
+            <!--<LinearLayout android:orientation="horizontal"-->
+                          <!--android:layout_width="fill_parent"-->
+                          <!--android:layout_height="wrap_content">-->
+                <!--<ImageView android:layout_width="wrap_content"-->
+                           <!--android:layout_height="wrap_content"-->
+                           <!--android:src="@drawable/ic_post_location"-->
+                           <!--android:scaleType="fitCenter" />-->
+                <!--<TextView android:textColor="@color/subject_action_text_color"-->
+                          <!--android:layout_gravity="center_vertical"-->
+                          <!--android:id="@+id/tv_place"-->
+                          <!--android:layout_width="wrap_content"-->
+                          <!--android:layout_height="wrap_content"-->
+                          <!--android:layout_marginLeft="7.0dip"-->
+                          <!--android:text="@string/mark_place"-->
+                          <!--style="@style/TextNormal" />-->
+            <!--</LinearLayout>-->
+        <!--</FrameLayout>-->
+        <!--<FrameLayout android:id="@+id/v_friends"-->
+                     <!--android:background="@drawable/subject_content_background"-->
+                     <!--android:padding="10.0dip"-->
+                     <!--android:visibility="gone"-->
+                     <!--android:layout_width="fill_parent"-->
+                     <!--android:layout_height="wrap_content"-->
+                     <!--android:layout_marginTop="15.0dip"-->
+                     <!--android:foreground="@drawable/list_selector_holo_light">-->
+            <!--<LinearLayout android:orientation="horizontal"-->
+                          <!--android:layout_width="fill_parent"-->
+                          <!--android:layout_height="wrap_content">-->
+                <!--<ImageView android:layout_width="wrap_content"-->
+                           <!--android:layout_height="wrap_content"-->
+                           <!--android:src="@drawable/ic_post_addtag"-->
+                           <!--android:scaleType="fitCenter" />-->
+                <!--<TextView android:textColor="@color/subject_action_text_color"-->
+                          <!--android:layout_gravity="center_vertical"-->
+                          <!--android:id="@+id/tv_friends"-->
+                          <!--android:layout_width="wrap_content"-->
+                          <!--android:layout_height="wrap_content"-->
+                          <!--android:layout_marginLeft="7.0dip"-->
+                          <!--android:text="@string/mark_friends"-->
+                          <!--style="@style/TextNormal" />-->
+            <!--</LinearLayout>-->
+        <!--</FrameLayout>-->
+    </LinearLayout>
+</ScrollView>

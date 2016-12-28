@@ -8,4 +8,11 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="half_transparent">#88000000</color>
+    <color name="black">#FF000000</color>
+    <color name="subject_action_content_bg">#ffffffff</color>
+    <color name="subject_action_content_border_bg">#ffdddddd</color>
+    <color name="subject_action_text_color">#ff222222</color>
+    <color name="list_divider">#ffcccccc</color>
+    <color name="holo_blue">#ff0099cc</color>
+    <color name="pressed_movie">#cc0099cc</color>
 </resources>

@@ -15,11 +15,11 @@ public class Comment extends DroiObject {
     @DroiExpose
     public String commenterId;
     @DroiReference
-    public FileUser commenter;
+    public FilmUser commenter;
     @DroiExpose
     public String comment;
     @DroiExpose
-    public int star = -1;
+    public float star = -1;
     @DroiExpose
     public String title;
     @DroiExpose
@@ -28,7 +28,7 @@ public class Comment extends DroiObject {
     public int uselessNum = 0;
 
     //短评
-    public Comment(String refId, String comment, FileUser commenter) {
+    public Comment(String refId, String comment, FilmUser commenter) {
         this.refId = refId;
         this.type = 1;
         this.comment = comment;
@@ -37,7 +37,7 @@ public class Comment extends DroiObject {
     }
 
     //短评
-    public Comment(String refId, String comment, FileUser commenter, int star) {
+    public Comment(String refId, String comment, FilmUser commenter, int star) {
         this.refId = refId;
         this.type = 1;
         this.comment = comment;
@@ -47,7 +47,7 @@ public class Comment extends DroiObject {
     }
 
     //影评
-    public Comment(String refId, String comment, FileUser commenter, int star, String title) {
+    public Comment(String refId, String comment, FilmUser commenter, int star, String title) {
         this.refId = refId;
         this.type = 2;
         this.comment = comment;

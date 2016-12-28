@@ -15,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.droi.film.R;
+import com.droi.film.fragment.CommenEditFragment;
 import com.droi.film.fragment.MainActivityFragment;
 import com.droi.film.fragment.ShowingFragment;
 
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements ShowingFragment.OnFragmentInteractionListener{
+public class MainActivity extends AppCompatActivity implements ShowingFragment.OnFragmentInteractionListener,CommenEditFragment.OnFragmentInteractionListener{
 
     @BindView(R.id.tabs)
     public TabLayout mTabLayout;
