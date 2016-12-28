@@ -13,18 +13,20 @@ import android.widget.RatingBar;
 import android.widget.Toast;
 
 import com.droi.film.R;
+import com.droi.film.interfaces.OnFragmentInteractionListener;
 import com.droi.film.model.Comment;
 import com.droi.film.model.FilmBean;
 import com.droi.film.model.FilmUser;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
  * Created by jiang on 16/12/26.
  */
 
-public class CommenEditFragment extends Fragment {
+public class CommentEditFragment extends Fragment {
 
     private static final String FILM_PARAM = "film";
     private FilmBean filmBean;
@@ -39,11 +41,11 @@ public class CommenEditFragment extends Fragment {
     @BindView(R.id.et_reviewSummary)
     EditText mReviewSummary;
 
-    public CommenEditFragment() {
+    public CommentEditFragment() {
     }
 
-    public static CommenEditFragment newInstance(FilmBean filmBean) {
-        CommenEditFragment fragment = new CommenEditFragment();
+    public static CommentEditFragment newInstance(FilmBean filmBean) {
+        CommentEditFragment fragment = new CommentEditFragment();
         Bundle args = new Bundle();
         args.putParcelable(FILM_PARAM, filmBean);
         fragment.setArguments(args);
@@ -62,11 +64,13 @@ public class CommenEditFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_subject_collection, container, false);
+        View view = inflater.inflate(R.layout.fragment_subject_collection, container, false);
+        ButterKnife.bind(this, view);
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
+    public void onButtonPressed(int uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
@@ -89,28 +93,13 @@ public class CommenEditFragment extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
-
     @OnClick(R.id.btn_submit)
     public void submit(View view) {
-        if (mReviewSummary.getText().toString().length() < 1){
-            Toast.makeText(getActivity(),"评论不能为空",Toast.LENGTH_SHORT).show();
-        }else{
+        if (mReviewSummary.getText().toString().length() < 1) {
+            Toast.makeText(getActivity(), "评论不能为空", Toast.LENGTH_SHORT).show();
+        } else {
             FilmUser user = FilmUser.getCurrentUser(FilmUser.class);
-            Comment comment = new Comment(filmBean.getObjectId(),mReviewSummary.getText().toString().trim(),user);
+            Comment comment = new Comment(filmBean.getObjectId(), mReviewSummary.getText().toString().trim(), user);
             comment.save();
             getFragmentManager().popBackStack();
         }

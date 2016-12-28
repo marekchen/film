@@ -96,13 +96,13 @@ public class ProfileActivity extends Activity implements View.OnClickListener {
     protected void onResume() {
         super.onResume();
         refreshView();
-        DroiAnalytics.onResume(this);
+       // DroiAnalytics.onResume(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        DroiAnalytics.onPause(this);
+       // DroiAnalytics.onPause(this);
     }
 
     private void refreshView() {

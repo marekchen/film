@@ -1,6 +1,7 @@
 package com.droi.film.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.droi.film.R;
+import com.droi.film.activity.CommentEditActivity;
 import com.droi.film.adapter.CastAdapter;
 import com.droi.film.interfaces.OnFragmentInteractionListener;
 import com.droi.film.model.CastBean;
@@ -24,6 +26,7 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
 public class FilmIndexFragment extends Fragment {
@@ -135,7 +138,7 @@ public class FilmIndexFragment extends Fragment {
             casts.add(castBean3);
             casts.add(castBean4);*/
             ArrayList<CastBean> casts = convert(filmBean.getCasts());
-            Log.i("chenpei","123");
+            Log.i("chenpei", "123");
             RecyclerView.Adapter mAdapter = new CastAdapter(getActivity(), casts);
             final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity()) {
                 @Override
@@ -187,6 +190,13 @@ public class FilmIndexFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @OnClick(R.id.comment1)
+    void comment1() {
+        Intent intent = new Intent(getActivity(), CommentEditActivity.class);
+        intent.putExtra("Film", filmBean);
+        startActivity(intent);
     }
 
 }

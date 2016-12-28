@@ -184,7 +184,7 @@
     <string name="official_title">详情</string>
 
     <string name="load_more">加载更多</string>
-    <string name="label_comment_useful">%1$s有用</string>
+    <string name="label_comment_useful">%1$d有用</string>
     <string name="comment">短评</string>
     <string name="write_comment_hint">写短评</string>
     <string name="add_tag">加标签</string>

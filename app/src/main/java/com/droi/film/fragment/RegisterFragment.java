@@ -56,13 +56,13 @@ public class RegisterFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        DroiAnalytics.onFragmentStart(getActivity(), "RegisterFragment");
+       // DroiAnalytics.onFragmentStart(getActivity(), "RegisterFragment");
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        DroiAnalytics.onFragmentEnd(getActivity(), "RegisterFragment");
+       // DroiAnalytics.onFragmentEnd(getActivity(), "RegisterFragment");
     }
 
     @Override

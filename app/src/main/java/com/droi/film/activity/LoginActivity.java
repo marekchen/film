@@ -27,13 +27,13 @@ public class LoginActivity extends FragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        DroiAnalytics.onResume(this);
+        //DroiAnalytics.onResume(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        DroiAnalytics.onPause(this);
+        //DroiAnalytics.onPause(this);
     }
 
     private static void displayLoginFragment() {

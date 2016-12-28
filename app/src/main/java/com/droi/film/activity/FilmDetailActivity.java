@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import com.droi.film.R;
 import com.droi.film.adapter.MyFragmentPagerAdapter;
+import com.droi.film.fragment.CommentListFragment;
 import com.droi.film.fragment.FilmIndexFragment;
 import com.droi.film.fragment.MainFragment;
 import com.droi.film.fragment.ShowingFragment;
@@ -69,7 +70,7 @@ public class FilmDetailActivity extends AppCompatActivity implements OnFragmentI
 
         FilmBean filmBean = getIntent().getExtras().getParcelable("Film");
         Fragment btFragment1 = FilmIndexFragment.newInstance(filmBean);
-        Fragment btFragment2 = FilmIndexFragment.newInstance(filmBean);
+        Fragment btFragment2 = CommentListFragment.newInstance(filmBean);
         Fragment btFragment3 = FilmIndexFragment.newInstance(filmBean);
         fragmentList.add(btFragment1);
         fragmentList.add(btFragment2);
