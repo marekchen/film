@@ -9,9 +9,6 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.droi.film.model.Banner;
-import com.droi.sdk.DroiCallback;
-import com.droi.sdk.DroiError;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 

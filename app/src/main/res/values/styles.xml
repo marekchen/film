@@ -30,4 +30,51 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
 
+    <style name="RatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:maxWidth">@dimen/movie_ratingbar_star_maxWidth</item>
+        <item name="android:maxHeight">@dimen/movie_ratingbar_star_maxHeight</item>
+        <item name="android:minWidth">@dimen/movie_ratingbar_star_minWidth</item>
+        <item name="android:minHeight">@dimen/movie_ratingbar_star_minHeight</item>
+        <item name="android:progressDrawable">@drawable/ratingbar_star</item>
+    </style>
+
+    <style name="TextNormal">
+        <item name="android:textSize">14.0sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="Text_MainBody2" parent="@style/TextNormal">
+        <item name="android:textSize">13.0sp</item>
+        <item name="android:textColor">#fff5946b</item>
+    </style>
+
+    <style name="Subject.RatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:maxHeight">@dimen/subject_rating_maxHeight</item>
+        <item name="android:progressDrawable">@drawable/subject_ratingbar_star</item>
+        <item name="android:minHeight">@dimen/subject_rating_minHeight</item>
+        <item name="android:numStars">5</item>
+    </style>
+
+    <style name="Button.Holo.Blue" parent="@style/Button.Default">
+        <item name="android:textSize">14.0sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/btn_bg_holo_blue</item>
+        <item name="android:minWidth">60.0dip</item>
+        <item name="android:minHeight">30.0dip</item>
+    </style>
+
+    <style name="Button.Default" parent="@android:style/Widget.Holo.Light.Button">
+        <item name="android:textSize">14.0sp</item>
+        <item name="android:paddingLeft">10.0dip</item>
+        <item name="android:paddingTop">10.0dip</item>
+        <item name="android:paddingRight">10.0dip</item>
+        <item name="android:paddingBottom">10.0dip</item>
+    </style>
+
+    <style name="Text.Empty" parent="@style/TextNormal">
+        <item name="android:textSize">14.0sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_margin">15.0dip</item>
+    </style>
+
 </resources>

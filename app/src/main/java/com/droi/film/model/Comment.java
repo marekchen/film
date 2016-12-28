@@ -19,7 +19,7 @@ public class Comment extends DroiObject {
     @DroiExpose
     public String comment;
     @DroiExpose
-    public int star = -1;
+    public float star = -1;
     @DroiExpose
     public String title;
     @DroiExpose

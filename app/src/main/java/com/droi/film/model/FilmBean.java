@@ -29,8 +29,6 @@ public class FilmBean extends DroiObject {
     ArrayList<DroiReferenceObject> casts;
     @DroiExpose
     String releaseTime; //上映时间
-    @DroiExpose
-    int durationTime;   //影片时长
 
     public String getTitle() {
         return title;
@@ -94,14 +92,6 @@ public class FilmBean extends DroiObject {
 
     public void setReleaseTime(String releaseTime) {
         this.releaseTime = releaseTime;
-    }
-
-    public int getDurationTime() {
-        return durationTime;
-    }
-
-    public void setDurationTime(int durationTime) {
-        this.durationTime = durationTime;
     }
 
     public ArrayList<DroiReferenceObject> getCasts() {

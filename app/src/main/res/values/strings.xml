@@ -97,7 +97,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-
     <!-- Mine Fragment -->
     <string name="fragment_mine_title">我的</string>
     <string name="fragment_mine_login">点击头像登陆</string>
@@ -170,7 +169,6 @@
     <string name="favorite">收藏</string>
     <string name="favoriting">已收藏</string>
     <string name="cancel">取消</string>
-    <string name="comment">评论</string>
     <string name="add_comment">添加评论</string>
     <string name="like">赞</string>
     <string name="liking">已赞</string>
@@ -184,4 +182,17 @@
     <string name="send_failed">发送失败!</string>
     <string name="answer_title">回答</string>
     <string name="official_title">详情</string>
+
+    <string name="load_more">加载更多</string>
+    <string name="label_comment_useful">%1$s有用</string>
+    <string name="comment">短评</string>
+    <string name="write_comment_hint">写短评</string>
+    <string name="add_tag">加标签</string>
+    <string name="mark_friends">标记同看的人</string>
+    <string name="mark_place">标记在哪家影院看过</string>
+    <string name="sync_share_to">同步到</string>
+    <string name="useful">有用</string>
+    <string name="useless">没用</string>
+    <string name="error_load">载入数据出了点问题</string>
+
 </resources>

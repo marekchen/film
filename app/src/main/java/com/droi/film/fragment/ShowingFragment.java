@@ -77,7 +77,6 @@ public class ShowingFragment extends Fragment {
         countries.add("香港");
         filmBean.setCountries(countries);
         filmBean.setCommentsCount(1000);
-        filmBean.setDurationTime(120);
         filmBean.setReleaseTime("2016-12-23");
         filmBean.setStar(4.4f);
         filmBean.setSummary("摆渡人是城市里的超级英雄，摆渡就是把人从痛苦中解救出来。用快乐和温暖，抵抗这个世界的悲伤。\n酒吧老板陈末（梁朝伟 饰）和合伙人管春（金城武 饰）就是这座城市的“金牌摆渡人”，他们平时看起来吊儿郎当，却从不对每位需要帮助的人说拒绝，只要你“预约摆渡”，刀山火海都会“使命必达”。邻居女孩小玉（杨颖 饰）为了偶像马力（陈奕迅 饰），预约了他们的服务，但在帮助小玉挑战整个城市的过程中，陈末和管春也逐渐发现了自己躲不过的问题。从欢天喜地的生活，到惊天动地的疯狂，摆渡人最辉煌的篇章，从这里开启。");
@@ -160,21 +159,23 @@ public class ShowingFragment extends Fragment {
         films.add(filmBean15);
         films.add(filmBean16);
         films.add(filmBean17);
+        movieAdapter = new MovieAdapter(getActivity(), films);
+        movieGridView.setAdapter(movieAdapter);
 
-        DroiQuery query = DroiQuery.Builder.newBuilder().query(FilmBean.class).build();
+        /*DroiQuery query = DroiQuery.Builder.newBuilder().query(FilmBean.class).build();
         query.runQueryInBackground(new DroiQueryCallback<FilmBean>() {
             @Override
             public void result(List<FilmBean> list, DroiError droiError) {
                 Log.i("chenpei", "query:" + droiError.toString());
                 if (droiError.isOk() && list.size() > 0) {
-                    /*Intent intent = new Intent(getActivity(), FilmDetailActivity.class);
+                    *//*Intent intent = new Intent(getActivity(), FilmDetailActivity.class);
                     intent.putExtra("Film", list.get(0));
-                    startActivity(intent);*/
+                    startActivity(intent);*//*
                     movieAdapter = new MovieAdapter(getActivity(), list);
                     movieGridView.setAdapter(movieAdapter);
                 }
             }
-        });
+        });*/
 
 
         /*Button button2 = (Button) view.findViewById(R.id.detail);

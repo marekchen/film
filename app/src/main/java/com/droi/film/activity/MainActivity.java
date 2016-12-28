@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import com.droi.film.R;
 import com.droi.film.adapter.MyFragmentPagerAdapter;
-import com.droi.film.fragment.MainFragment;
 import com.droi.film.fragment.MineFragment;
 import com.droi.film.fragment.ShowingFragment;
 import com.droi.film.interfaces.OnFragmentInteractionListener;
