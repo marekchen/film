@@ -5,13 +5,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.droi.film.R;
-import com.droi.film.model.CastBean;
 import com.droi.film.model.Comment;
 
 import java.util.List;
@@ -32,6 +29,26 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CastItem
         mLayoutInflater = LayoutInflater.from(mContext);
     }
 
+    public void clear() {
+        mDataList.clear();
+    }
+
+    public void append(Comment comment) {
+        if (null == comment) {
+            return;
+        }
+        mDataList.add(comment);
+    }
+
+    public void append(List<Comment> comments) {
+        if (comments == null) {
+            return;
+        }
+        mDataList.addAll(comments);
+        notifyDataSetChanged();
+    }
+
+
     @Override
     public CommentAdapter.CastItemHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new CastItemHolder(mLayoutInflater.inflate(R.layout.view_item_comment, parent, false));
@@ -40,12 +57,12 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CastItem
     @Override
     public void onBindViewHolder(CastItemHolder holder, int position) {
         Comment comment = mDataList.get(position);
-        holder.nameTextView.setText(comment.commenter.getUserId().substring(0, 5));
+        holder.nameTextView.setText(comment.commenter.getUserId());
         holder.ratingBar.setRating(comment.star);
         holder.contentTextView.setText(comment.comment);
-        String sAgeFormat = mContext.getResources().getString(R.string.label_comment_useful);
-        String sFinalAge = String.format(sAgeFormat, 23);
-        holder.usefulCount.setText(sFinalAge);
+        String sCommentFormat = mContext.getResources().getString(R.string.label_comment_useful);
+        String sFinalComment = String.format(sCommentFormat, comment.usefullNum);
+        holder.usefulCount.setText(sFinalComment);
     }
 
     @Override

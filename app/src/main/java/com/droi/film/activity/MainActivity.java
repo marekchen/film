@@ -13,8 +13,8 @@ import android.widget.TextView;
 
 import com.droi.film.R;
 import com.droi.film.adapter.MyFragmentPagerAdapter;
+import com.droi.film.fragment.FilmFragment;
 import com.droi.film.fragment.MineFragment;
-import com.droi.film.fragment.ShowingFragment;
 import com.droi.film.interfaces.OnFragmentInteractionListener;
 
 import java.util.ArrayList;
@@ -50,10 +50,10 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         for (int i = 0; i < mTitleList.size(); i++) {
             mTabLayout.addTab(mTabLayout.newTab().setText(mTitleList.get(i)));//添加tab选项卡
         }
-
+        Log.i("chenpei","ac");
         fragmentList = new ArrayList<>();
-        Fragment btFragment1 = ShowingFragment.newInstance("showing");
-        Fragment btFragment2 = ShowingFragment.newInstance("coming");
+        Fragment btFragment1 = FilmFragment.newInstance(1);
+        Fragment btFragment2 = FilmFragment.newInstance(2);
         //Fragment btFragment2 = FilmIndexFragment.newInstance(filmBean);
         Fragment btFragment3 = new MineFragment();
 

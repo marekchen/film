@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import com.droi.film.adapter.MovieAdapter;
 import com.droi.film.interfaces.OnFragmentInteractionListener;
 import com.droi.film.model.FilmBean;
 import com.droi.sdk.DroiError;
+import com.droi.sdk.core.DroiCondition;
 import com.droi.sdk.core.DroiQuery;
 import com.droi.sdk.core.DroiQueryCallback;
 
@@ -25,10 +27,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class ShowingFragment extends Fragment {
-    private static final String ARG_PARAM1 = "tab";
+public class FilmFragment extends Fragment {
+    private static final String ARG_PARAM1 = "type";
 
-    private String tab;
+    private int type;
 
     private OnFragmentInteractionListener mListener;
     private Unbinder unbinder;
@@ -37,14 +39,14 @@ public class ShowingFragment extends Fragment {
     @BindView(R.id.movie_rv)
     RecyclerView movieGridView;
 
-    public ShowingFragment() {
+    public FilmFragment() {
         // Required empty public constructor
     }
 
-    public static ShowingFragment newInstance(String tab) {
-        ShowingFragment fragment = new ShowingFragment();
+    public static FilmFragment newInstance(int type) {
+        FilmFragment fragment = new FilmFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, tab);
+        args.putInt(ARG_PARAM1, type);
         fragment.setArguments(args);
         return fragment;
     }
@@ -53,7 +55,7 @@ public class ShowingFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            tab = getArguments().getString(ARG_PARAM1);
+            type = getArguments().getInt(ARG_PARAM1);
         }
 
     }
@@ -64,8 +66,8 @@ public class ShowingFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_showing, container, false);
         unbinder = ButterKnife.bind(this, view);
-
-        FilmBean filmBean = new FilmBean();
+        Log.i("chenpei", "f");
+      /*  FilmBean filmBean = new FilmBean();
         filmBean.setTitle("摆渡人");
         ArrayList genres = new ArrayList<String>();
         genres.add("喜剧");
@@ -160,22 +162,24 @@ public class ShowingFragment extends Fragment {
         films.add(filmBean16);
         films.add(filmBean17);
         movieAdapter = new MovieAdapter(getActivity(), films);
+        movieGridView.setAdapter(movieAdapter);*/
+        movieGridView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        List<FilmBean> list = new ArrayList<>();
+        movieAdapter = new MovieAdapter(getActivity(), list);
         movieGridView.setAdapter(movieAdapter);
 
-        /*DroiQuery query = DroiQuery.Builder.newBuilder().query(FilmBean.class).build();
+        DroiCondition cond = DroiCondition.cond("type", DroiCondition.Type.EQ, type);
+        DroiQuery query = DroiQuery.Builder.newBuilder().where(cond).query(FilmBean.class).build();
         query.runQueryInBackground(new DroiQueryCallback<FilmBean>() {
             @Override
             public void result(List<FilmBean> list, DroiError droiError) {
                 Log.i("chenpei", "query:" + droiError.toString());
                 if (droiError.isOk() && list.size() > 0) {
-                    *//*Intent intent = new Intent(getActivity(), FilmDetailActivity.class);
-                    intent.putExtra("Film", list.get(0));
-                    startActivity(intent);*//*
-                    movieAdapter = new MovieAdapter(getActivity(), list);
-                    movieGridView.setAdapter(movieAdapter);
+                    movieAdapter.append(list);
+                    movieAdapter.notifyDataSetChanged();
                 }
             }
-        });*/
+        });
 
 
         /*Button button2 = (Button) view.findViewById(R.id.detail);
@@ -223,6 +227,7 @@ public class ShowingFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+        Log.i("chenpei", "fd" + type);
     }
 
     public void onButtonPressed(int action) {
@@ -241,6 +246,7 @@ public class ShowingFragment extends Fragment {
                     + " must implement OnFragmentInteractionListener");
         }
     }
+
 
     @Override
     public void onDetach() {

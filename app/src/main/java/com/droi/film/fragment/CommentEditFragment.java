@@ -1,7 +1,6 @@
 package com.droi.film.fragment;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -63,13 +62,11 @@ public class CommentEditFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_subject_collection, container, false);
+        View view = inflater.inflate(R.layout.fragment_comment_edit, container, false);
         ButterKnife.bind(this, view);
         return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(int uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
@@ -99,7 +96,7 @@ public class CommentEditFragment extends Fragment {
             Toast.makeText(getActivity(), "评论不能为空", Toast.LENGTH_SHORT).show();
         } else {
             FilmUser user = FilmUser.getCurrentUser(FilmUser.class);
-            Comment comment = new Comment(filmBean.getObjectId(), mReviewSummary.getText().toString().trim(), user);
+            Comment comment = new Comment(filmBean.getObjectId(), mReviewSummary.getText().toString().trim(), user, (int) mRatingBar.getRating());
             comment.save();
             getFragmentManager().popBackStack();
         }

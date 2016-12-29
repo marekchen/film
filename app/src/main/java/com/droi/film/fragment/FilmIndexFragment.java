@@ -11,18 +11,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.droi.film.R;
 import com.droi.film.activity.CommentEditActivity;
 import com.droi.film.adapter.CastAdapter;
+import com.droi.film.adapter.CommentAdapter;
 import com.droi.film.interfaces.OnFragmentInteractionListener;
 import com.droi.film.model.CastBean;
+import com.droi.film.model.Comment;
 import com.droi.film.model.FilmBean;
+import com.droi.sdk.DroiError;
+import com.droi.sdk.core.DroiCondition;
+import com.droi.sdk.core.DroiQuery;
+import com.droi.sdk.core.DroiQueryCallback;
 import com.droi.sdk.core.DroiReferenceObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -54,8 +62,9 @@ public class FilmIndexFragment extends Fragment {
     TextView summaryTextView;
     @BindView(R.id.cast_recycle_view)
     RecyclerView castRecycleView;
-    @BindView(R.id.comment_recycle_view)
-    RecyclerView commentRecycleView;
+    @BindView(R.id.rating_bar)
+    RatingBar ratingBar;
+    CastAdapter mCastAdapter;
 
     public FilmIndexFragment() {
     }
@@ -81,15 +90,17 @@ public class FilmIndexFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_film_index, container, false);
         unbinder = ButterKnife.bind(this, view);
         if (filmBean != null) {
             Glide.with(this)
                     .load(filmBean.getImage()).into(movieImageView);
             ratingStarTextView.setText("" + filmBean.getStar());
-            ratingCountTextView.setText("" + filmBean.getCommentsCount());
+            String sCommentFormat = this.getResources().getString(R.string.label_comment_count);
+            String sFinalComment = String.format(sCommentFormat, filmBean.getCommentsCount());
+            ratingCountTextView.setText(sFinalComment);
             releaseTextView.setText(filmBean.getReleaseTime());
+            ratingBar.setRating(filmBean.getStar() / 2);
             String genresString = "";
             ArrayList genres = filmBean.getGenres();
             for (int i = 0; i < genres.size(); i++) {
@@ -104,10 +115,9 @@ public class FilmIndexFragment extends Fragment {
             }
             countriesTextView.setText(countriesString);
             summaryTextView.setText(filmBean.getSummary());
-            //summaryTextView.setText("dddddddddddddddddddddddddddddddddd");
             LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
-            castRecycleView.setLayoutManager(mLayoutManager); //绑上列表管理器
-            CastBean castBean = new CastBean();
+            castRecycleView.setLayoutManager(mLayoutManager);
+/*            CastBean castBean = new CastBean();
             castBean.setName("梁朝伟");
             castBean.setAvatarUrl("http://img7.doubanio.com/img/celebrity/large/33525.jpg");
             CastBean castBean2 = new CastBean();
@@ -118,7 +128,7 @@ public class FilmIndexFragment extends Fragment {
             castBean3.setAvatarUrl("http://img7.doubanio.com/img/celebrity/large/20210.jpg");
             CastBean castBean4 = new CastBean();
             castBean4.setName("杨颖");
-            castBean4.setAvatarUrl("http://img7.doubanio.com/img/celebrity/large/50831.jpg");
+            castBean4.setAvatarUrl("http://img7.doubanio.com/img/celebrity/large/50831.jpg");*/
 /*            ArrayList<DroiReferenceObject> casts = new ArrayList<>();
             DroiReferenceObject ref1 = new DroiReferenceObject();
             ref1.setDroiObject(castBean);
@@ -138,16 +148,21 @@ public class FilmIndexFragment extends Fragment {
             casts.add(castBean3);
             casts.add(castBean4);*/
             ArrayList<CastBean> casts = convert(filmBean.getCasts());
-            Log.i("chenpei", "123");
-            RecyclerView.Adapter mAdapter = new CastAdapter(getActivity(), casts);
+            //Log.i("chenpei", "123");
+            mCastAdapter = new CastAdapter(getActivity(), casts);
             final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity()) {
                 @Override
                 public boolean canScrollVertically() {
                     return false;
                 }
             };
-            castRecycleView.setAdapter(mAdapter);
+            castRecycleView.setAdapter(mCastAdapter);
             castRecycleView.setLayoutManager(layoutManager);
+
+/*            ArrayList<Comment> comments = new ArrayList<>();
+            mCommentAdapter = new CommentAdapter(getActivity(), comments);
+            commentRecycleView.setAdapter(mCommentAdapter);
+            commentRecycleView.setLayoutManager(layoutManager);*/
         }
         return view;
     }
@@ -168,7 +183,6 @@ public class FilmIndexFragment extends Fragment {
         unbinder.unbind();
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(int action) {
         if (mListener != null) {
             mListener.onFragmentInteraction(action);
@@ -194,6 +208,13 @@ public class FilmIndexFragment extends Fragment {
 
     @OnClick(R.id.comment1)
     void comment1() {
+        Intent intent = new Intent(getActivity(), CommentEditActivity.class);
+        intent.putExtra("Film", filmBean);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.comment2)
+    void comment2() {
         Intent intent = new Intent(getActivity(), CommentEditActivity.class);
         intent.putExtra("Film", filmBean);
         startActivity(intent);

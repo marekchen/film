@@ -19,21 +19,31 @@ import com.droi.film.activity.LoginActivity;
 import com.droi.film.activity.ProfileActivity;
 
 import com.droi.film.model.CastBean;
+import com.droi.film.model.Comment;
 import com.droi.film.model.FilmBean;
 import com.droi.film.model.FilmUser;
 import com.droi.film.view.CircleImageView;
 import com.droi.sdk.DroiCallback;
 import com.droi.sdk.DroiError;
+import com.droi.sdk.core.DroiCloud;
 import com.droi.sdk.core.DroiReferenceObject;
 import com.droi.sdk.core.DroiUser;
 /*import com.droi.sdk.feedback.DroiFeedback;
 import com.droi.sdk.push.DroiPush;
 import com.droi.sdk.selfupdate.DroiUpdate;*/
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 /**
  * Created by chenpei on 2016/5/12.
@@ -163,7 +173,20 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 //uploadAppInfo();
                 //uploadAppType();
                 //uploadOfficialGuide();
-                upload();
+                /*new Thread() {
+                    @Override
+                    public void run() {
+                        super.run();
+                        upload1();
+                    }
+                }.start();*/
+                Comment comment = new Comment("170c4787bbc4d5398c44965f", "dddddd", DroiUser.getCurrentUser(FilmUser.class), 3);
+                DroiCloud.callCloudServiceInBackground("compute_star.lua", comment, new DroiCallback<Comment>() {
+                    @Override
+                    public void result(Comment droiObject, DroiError droiError) {
+                        Log.i("chenpei", droiError.toString());
+                    }
+                }, Comment.class);
                 break;
             default:
                 break;
@@ -186,7 +209,85 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         startActivity(profileIntent);
     }
 
-    void upload(){
+    void upload1() {
+        String url = "http://api.douban.com/v2/movie/in_theaters";
+        try {
+            String json = run(url);
+            JSONObject jsonObject = new JSONObject(json);
+            JSONArray jsonArray = jsonObject.getJSONArray("subjects");
+            for (int i = 0; i < jsonArray.length(); i++) {
+                FilmBean filmBean = new FilmBean();
+                JSONObject jo = jsonArray.getJSONObject(i);
+
+                String jsonAlt = run("http://api.douban.com/v2/movie/subject/" + jo.getString("id"));
+                JSONObject movie = new JSONObject(jsonAlt);
+
+                filmBean.setTitle(movie.getString("title"));
+                filmBean.setImage(movie.getJSONObject("images").getString("large"));
+
+                JSONArray directors = movie.getJSONArray("directors");
+                ArrayList<DroiReferenceObject> castList = new ArrayList<>();
+                for (int j = 0; j < directors.length(); j++) {
+                    JSONObject director = directors.getJSONObject(j);
+                    CastBean castBean = new CastBean();
+                    castBean.setName(director.getString("name"));
+                    castBean.setAvatarUrl(director.getJSONObject("avatars").getString("large"));
+                    castBean.setType(0);
+                    DroiReferenceObject ref1 = new DroiReferenceObject();
+                    ref1.setDroiObject(castBean);
+                    castList.add(ref1);
+                }
+                JSONArray casts = movie.getJSONArray("casts");
+                for (int j = 0; j < casts.length(); j++) {
+                    JSONObject director = casts.getJSONObject(j);
+                    CastBean castBean = new CastBean();
+                    castBean.setName(director.getString("name"));
+                    castBean.setAvatarUrl(director.getJSONObject("avatars").getString("large"));
+                    castBean.setType(1);
+                    DroiReferenceObject ref1 = new DroiReferenceObject();
+                    ref1.setDroiObject(castBean);
+                    castList.add(ref1);
+                }
+                filmBean.setCasts(castList);
+
+                JSONArray genresObject = movie.getJSONArray("genres");
+                ArrayList<String> genres = new ArrayList<>();
+                for (int j = 0; j < genresObject.length(); j++) {
+                    String genre = genresObject.getString(j);
+                    genres.add(genre);
+                }
+                filmBean.setGenres(genres);
+
+                JSONArray countriesObject = movie.getJSONArray("countries");
+                ArrayList<String> countries = new ArrayList<>();
+                for (int j = 0; j < countriesObject.length(); j++) {
+                    String genre = countriesObject.getString(j);
+                    countries.add(genre);
+                }
+                filmBean.setCountries(countries);
+
+                filmBean.setSummary(movie.getString("summary"));
+                filmBean.setReleaseTime(movie.getString("year"));
+                filmBean.type = 1;
+                filmBean.saveInBackground(null);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    String run(String url) throws IOException {
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder()
+                .url(url)
+                .build();
+        Response response = client.newCall(request).execute();
+        return response.body().string();
+    }
+
+    void upload() {
         FilmBean filmBean = new FilmBean();
         filmBean.setTitle("摆渡人");
         ArrayList genres = new ArrayList<String>();

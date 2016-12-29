@@ -29,17 +29,15 @@
                 style="@android:style/Widget.Holo.Light.RatingBar.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="1dp"
-                android:layout_marginStart="1dp" />
+                android:layout_centerVertical="true" />
 
             <TextView
                 android:id="@+id/tv_rating_star"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:layout_marginLeft="@dimen/film_index_text_margin_left"
-                android:layout_marginStart="@dimen/film_index_text_margin_left"
+                android:layout_marginLeft="2dp"
+                android:layout_marginStart="2dp"
                 android:layout_toEndOf="@id/rating_bar"
                 android:layout_toRightOf="@id/rating_bar"
                 android:text="10.0"
@@ -50,8 +48,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:layout_marginLeft="@dimen/film_index_text_margin_left"
-                android:layout_marginStart="@dimen/film_index_text_margin_left"
+                android:layout_marginLeft="2dp"
+                android:layout_marginStart="2dp"
                 android:layout_toEndOf="@id/tv_rating_star"
                 android:layout_toRightOf="@id/tv_rating_star"
                 android:text="(人评分)"
@@ -173,7 +171,7 @@
                 android:layout_marginTop="10dp" />
         </LinearLayout>
 
-        <LinearLayout
+<!--        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/cast"
@@ -191,7 +189,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp" />
-        </LinearLayout>
+        </LinearLayout>-->
 
 
     </RelativeLayout>

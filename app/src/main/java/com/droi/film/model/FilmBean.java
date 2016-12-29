@@ -16,9 +16,9 @@ public class FilmBean extends DroiObject {
     @DroiExpose
     String image;    //封面图片地址
     @DroiExpose
-    float star;         //评分
+    float star = 0;         //评分
     @DroiExpose
-    int commentsCount;     //评论数量
+    int commentsCount = 0;     //评论数量
     @DroiExpose
     String summary;       //简介
     @DroiExpose
@@ -29,6 +29,8 @@ public class FilmBean extends DroiObject {
     ArrayList<DroiReferenceObject> casts;
     @DroiExpose
     String releaseTime; //上映时间
+    @DroiExpose
+    public int type;
 
     public String getTitle() {
         return title;

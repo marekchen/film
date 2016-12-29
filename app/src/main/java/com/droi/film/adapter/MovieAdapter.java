@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.droi.film.R;
 import com.droi.film.activity.FilmDetailActivity;
 import com.droi.film.model.Banner;
+import com.droi.film.model.Comment;
 import com.droi.film.model.FilmBean;
 import com.droi.film.view.Indicator;
 
@@ -37,6 +38,14 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private List<FilmBean> dataList;
     private ArrayList<Banner> banners = new ArrayList<>();
     private Context mContext;
+
+    public void append(List<FilmBean> filmBeens) {
+        if (filmBeens == null) {
+            return;
+        }
+        dataList.addAll(filmBeens);
+        notifyDataSetChanged();
+    }
 
     //构造函数
     public MovieAdapter(Context context, List<FilmBean> dataList) {

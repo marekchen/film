@@ -1,17 +1,11 @@
 package com.droi.film.activity;
 
-import android.net.Uri;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,8 +17,6 @@ import com.droi.film.R;
 import com.droi.film.adapter.MyFragmentPagerAdapter;
 import com.droi.film.fragment.CommentListFragment;
 import com.droi.film.fragment.FilmIndexFragment;
-import com.droi.film.fragment.MainFragment;
-import com.droi.film.fragment.ShowingFragment;
 import com.droi.film.interfaces.OnFragmentInteractionListener;
 import com.droi.film.model.FilmBean;
 
@@ -63,8 +55,8 @@ public class FilmDetailActivity extends AppCompatActivity implements OnFragmentI
         }
 
         fragmentList = new ArrayList<>();
-        //Fragment btFragment1 = ShowingFragment.newInstance("showing");
-        //Fragment btFragment2 = ShowingFragment.newInstance("coming");
+        //Fragment btFragment1 = FilmFragment.newInstance("showing");
+        //Fragment btFragment2 = FilmFragment.newInstance("coming");
         //Fragment btFragment2 = FilmIndexFragment.newInstance(filmBean);
         //Fragment btFragment3 = new MainFragment();
 

@@ -12,6 +12,16 @@ public class CastBean extends DroiObject {
     String name;
     @DroiExpose
     String avatarUrl;
+    @DroiExpose
+    int type;
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
 
     public String getName() {
         return name;

@@ -38,8 +38,8 @@ public class CastAdapter extends RecyclerView.Adapter<CastAdapter.CastItemHolder
 
     @Override
     public void onBindViewHolder(CastItemHolder holder, int position) {
-        CastBean cast = (CastBean) mDataList.get(position);
-        holder.nameTextView.setText(cast.getName());
+        CastBean cast = mDataList.get(position);
+        holder.nameTextView.setText(cast.getName()+(cast.getType()==0?" [导演]":""));
         Glide.with(mContext).load(cast.getAvatarUrl()).into(holder.avatarImageView);
     }
 

@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:layout_gravity="right|center_vertical"
     android:orientation="vertical"
-    tools:context="com.droi.film.fragment.ShowingFragment">
+    tools:context="com.droi.film.fragment.FilmFragment">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/movie_rv"
