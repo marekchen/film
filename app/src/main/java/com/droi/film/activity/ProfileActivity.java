@@ -34,8 +34,6 @@ import java.io.File;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-//import com.droi.sdk.analytics.DroiAnalytics;
-
 /**
  * Created by chenpei on 2016/5/30.
  */
@@ -96,13 +94,13 @@ public class ProfileActivity extends Activity implements View.OnClickListener {
     protected void onResume() {
         super.onResume();
         refreshView();
-       // DroiAnalytics.onResume(this);
+        DroiAnalytics.onResume(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-       // DroiAnalytics.onPause(this);
+        DroiAnalytics.onPause(this);
     }
 
     private void refreshView() {

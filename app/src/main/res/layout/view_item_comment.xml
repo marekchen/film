@@ -53,7 +53,8 @@
             android:layout_alignParentTop="true"
             android:text="@string/label_comment_useful"
             android:textColor="#ffc3c3c3"
-            android:textSize="13.0sp" />
+            android:textSize="13.0sp"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/tv_review_content"

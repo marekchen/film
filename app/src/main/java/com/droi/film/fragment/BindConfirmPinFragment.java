@@ -37,7 +37,6 @@ public class BindConfirmPinFragment extends BackHandledFragment {
     Context mContext;
 
     public BindConfirmPinFragment() {
-        // Required empty public constructor
     }
 
     public static BindConfirmPinFragment newInstance() {
@@ -102,22 +101,6 @@ public class BindConfirmPinFragment extends BackHandledFragment {
                 }
             }
         });
-        /*DroiError error = user.confirmPhoneNumberPinCode(pinCode);
-        if (error.isOk()) {
-            Log.i(TAG, "validatePinCode:success");
-            Toast.makeText(getActivity(),"绑定成功", Toast.LENGTH_SHORT).show();
-            if (mListener != null) {
-                //成功 回到ProfileActivity
-                mListener.onFragmentInteraction(2);
-            }
-        } else {
-            Log.i(TAG, "validatePinCode:failed:" + error.toString());
-            if (error.getCode()==1040018) {
-                Toast.makeText(getActivity(), "绑定操作过于频繁，请稍后再试", Toast.LENGTH_SHORT).show();
-            }else{
-                Toast.makeText(getActivity(), "绑定失败", Toast.LENGTH_SHORT).show();
-            }
-        }*/
     }
 
     @Override
@@ -182,7 +165,6 @@ public class BindConfirmPinFragment extends BackHandledFragment {
     public void onResume() {
         super.onResume();
         DroiAnalytics.onFragmentStart(getActivity(), "ConfirmPinFragment");
-
     }
 
     @Override

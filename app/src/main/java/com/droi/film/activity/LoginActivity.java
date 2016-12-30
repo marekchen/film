@@ -24,18 +24,6 @@ public class LoginActivity extends FragmentActivity {
         displayLoginFragment();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        //DroiAnalytics.onResume(this);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        //DroiAnalytics.onPause(this);
-    }
-
     private static void displayLoginFragment() {
         FragmentTransaction transaction = fm.beginTransaction();
         Fragment loginFragment = new LoginFragment();
@@ -47,5 +35,18 @@ public class LoginActivity extends FragmentActivity {
     protected void onDestroy() {
         super.onDestroy();
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        DroiAnalytics.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        DroiAnalytics.onPause(this);
+    }
+
 }
 

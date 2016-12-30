@@ -23,8 +23,32 @@
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
         android:gravity="center_vertical"
-        android:text="电影"
         android:textColor="@android:color/white"
         android:textSize="@dimen/top_bar_title_size" />
 
+    <ImageButton
+        android:id="@+id/top_bar_send_btn"
+        android:layout_width="70dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/btn_bg"
+        android:paddingBottom="15dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="15dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/send" />
+
+    <ImageButton
+        android:id="@+id/top_bar_delete_btn"
+        android:layout_width="70dp"
+        android:layout_height="match_parent"
+        android:layout_toLeftOf="@id/top_bar_send_btn"
+        android:background="@drawable/btn_bg"
+        android:paddingBottom="15dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="15dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/delete_normal" />
 </RelativeLayout>

@@ -19,6 +19,7 @@ import com.droi.film.fragment.CommentListFragment;
 import com.droi.film.fragment.FilmIndexFragment;
 import com.droi.film.interfaces.OnFragmentInteractionListener;
 import com.droi.film.model.FilmBean;
+import com.droi.sdk.analytics.DroiAnalytics;
 
 import java.util.ArrayList;
 
@@ -47,7 +48,6 @@ public class FilmDetailActivity extends AppCompatActivity implements OnFragmentI
         ButterKnife.bind(this);
         mTitleList.add("介绍");
         mTitleList.add("短评");
-        mTitleList.add("影评");
 
         mTabLayout.setTabMode(TabLayout.MODE_FIXED);//设置tab模式，当前为系统默认模式
         for (int i = 0; i < mTitleList.size(); i++) {
@@ -55,18 +55,14 @@ public class FilmDetailActivity extends AppCompatActivity implements OnFragmentI
         }
 
         fragmentList = new ArrayList<>();
-        //Fragment btFragment1 = FilmFragment.newInstance("showing");
-        //Fragment btFragment2 = FilmFragment.newInstance("coming");
-        //Fragment btFragment2 = FilmIndexFragment.newInstance(filmBean);
-        //Fragment btFragment3 = new MainFragment();
-
         FilmBean filmBean = getIntent().getExtras().getParcelable("Film");
+        topBarTitle.setText(filmBean.getTitle());
         Fragment btFragment1 = FilmIndexFragment.newInstance(filmBean);
         Fragment btFragment2 = CommentListFragment.newInstance(filmBean);
-        Fragment btFragment3 = FilmIndexFragment.newInstance(filmBean);
+
         fragmentList.add(btFragment1);
         fragmentList.add(btFragment2);
-        fragmentList.add(btFragment3);
+
 
         PagerAdapter mAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager(), fragmentList, mTitleList);
         mViewPager.setAdapter(mAdapter);//给ViewPager设置适配器
@@ -79,43 +75,17 @@ public class FilmDetailActivity extends AppCompatActivity implements OnFragmentI
                 finish();
             }
         });
-/*        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);*//*
-
-*//*        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*//*
-
-        FilmBean filmBean = getIntent().getExtras().getParcelable("Film");
-        if (filmBean != null) {
-            FragmentManager fm = getSupportFragmentManager();
-            FragmentTransaction transaction = fm.beginTransaction();
-            Fragment btFragment2 = FilmIndexFragment.newInstance(filmBean);
-            transaction.replace(R.id.id_content, btFragment2);
-            transaction.commit();
-        }*/
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_scrolling, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -126,4 +96,17 @@ public class FilmDetailActivity extends AppCompatActivity implements OnFragmentI
     public void onFragmentInteraction(int action) {
 
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        DroiAnalytics.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        DroiAnalytics.onPause(this);
+    }
+
 }

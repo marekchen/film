@@ -3,32 +3,32 @@
   xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_window_focused="false" android:state_enabled="true">
         <shape>
-            <gradient android:startColor="@color/holo_blue" android:endColor="@color/holo_blue" />
+            <gradient android:startColor="@android:color/transparent" android:endColor="@color/holo_blue" />
         </shape>
     </item>
     <item android:state_window_focused="false" android:state_enabled="false">
         <shape>
-            <gradient android:startColor="#ffcccccc" android:endColor="#ffcccccc" />
+            <gradient android:startColor="@android:color/transparent" android:endColor="#ffcccccc" />
         </shape>
     </item>
     <item android:state_pressed="true">
         <shape>
-            <gradient android:startColor="@color/pressed_movie" android:endColor="@color/pressed_movie" />
+            <gradient android:startColor="@android:color/transparent" android:endColor="@color/pressed_movie" />
         </shape>
     </item>
     <item android:state_focused="true" android:state_enabled="true">
         <shape>
-            <gradient android:startColor="@color/holo_blue" android:endColor="@color/holo_blue" />
+            <gradient android:startColor="@android:color/transparent" android:endColor="@color/holo_blue" />
         </shape>
     </item>
     <item android:state_enabled="true">
         <shape>
-            <gradient android:startColor="@color/holo_blue" android:endColor="@color/holo_blue" />
+            <gradient android:startColor="@android:color/transparent" android:endColor="@color/holo_blue" />
         </shape>
     </item>
     <item android:state_focused="true">
         <shape>
-            <gradient android:startColor="#ffcccccc" android:endColor="#ffcccccc" />
+            <gradient android:startColor="@android:color/transparent" android:endColor="#ffcccccc" />
         </shape>
     </item>
 </selector>

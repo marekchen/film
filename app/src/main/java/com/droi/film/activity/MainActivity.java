@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -16,6 +15,8 @@ import com.droi.film.adapter.MyFragmentPagerAdapter;
 import com.droi.film.fragment.FilmFragment;
 import com.droi.film.fragment.MineFragment;
 import com.droi.film.interfaces.OnFragmentInteractionListener;
+import com.droi.sdk.analytics.DroiAnalytics;
+import com.droi.sdk.selfupdate.DroiUpdate;
 
 import java.util.ArrayList;
 
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        DroiUpdate.update(this);
         mTitleList.add("正在上映");
         mTitleList.add("即将上映");
         mTitleList.add("我的电影");
@@ -50,14 +52,10 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         for (int i = 0; i < mTitleList.size(); i++) {
             mTabLayout.addTab(mTabLayout.newTab().setText(mTitleList.get(i)));//添加tab选项卡
         }
-        Log.i("chenpei","ac");
         fragmentList = new ArrayList<>();
         Fragment btFragment1 = FilmFragment.newInstance(1);
         Fragment btFragment2 = FilmFragment.newInstance(2);
-        //Fragment btFragment2 = FilmIndexFragment.newInstance(filmBean);
         Fragment btFragment3 = new MineFragment();
-
-        //Fragment btFragment3 = new MainFragment();
 
         fragmentList.add(btFragment1);
         fragmentList.add(btFragment2);
@@ -65,9 +63,9 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
 
         PagerAdapter mAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager(), fragmentList, mTitleList);
         mViewPager.setAdapter(mAdapter);//给ViewPager设置适配器
+        mViewPager.setOffscreenPageLimit(2);
         mTabLayout.setupWithViewPager(mViewPager);//将TabLayout和ViewPager关联起来。
         mTabLayout.setTabsFromPagerAdapter(mAdapter);//给Tabs设置适配器
-        Log.i("test", "oncreate-end");
         topBarBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,11 +82,12 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     @Override
     protected void onResume() {
         super.onResume();
+        DroiAnalytics.onResume(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        DroiAnalytics.onPause(this);
     }
-
 }

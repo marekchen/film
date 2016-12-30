@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +17,11 @@ import com.droi.film.interfaces.OnFragmentInteractionListener;
 import com.droi.film.model.Comment;
 import com.droi.film.model.FilmBean;
 import com.droi.sdk.DroiError;
+import com.droi.sdk.analytics.DroiAnalytics;
 import com.droi.sdk.core.DroiCondition;
 import com.droi.sdk.core.DroiQuery;
 import com.droi.sdk.core.DroiQueryCallback;
+import com.droi.sdk.core.DroiUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +58,10 @@ public class CommentListFragment extends Fragment {
         return fragment;
     }
 
+    public static CommentListFragment newInstance() {
+        return new CommentListFragment();
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,16 +73,9 @@ public class CommentListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_list_comment, container, false);
         ButterKnife.bind(this, view);
         commentRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        /*final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity()) {
-            @Override
-            public boolean canScrollVertically() {
-                return false;
-            }
-        };*/
         List<Comment> list = new ArrayList<>();
         mAdapter = new CommentAdapter(getActivity(), list);
         commentRecyclerView.setAdapter(mAdapter);
@@ -102,12 +102,22 @@ public class CommentListFragment extends Fragment {
         if (isRefreshing) {
             return;
         }
-        DroiCondition cond = DroiCondition.cond("refId", DroiCondition.Type.EQ, filmBean.getObjectId());
+        DroiCondition cond;
+        if (filmBean != null) {
+            cond = DroiCondition.cond("refId", DroiCondition.Type.EQ, filmBean.getObjectId());
+        } else {
+            DroiUser user = DroiUser.getCurrentUser();
+            if (user == null || user.isAnonymous()) {
+                return;
+            }
+            cond = DroiCondition.cond("commenterId", DroiCondition.Type.EQ, user.getObjectId());
+        }
         DroiQuery query = DroiQuery.Builder.newBuilder().offset(offset).limit(10).where(cond).query(Comment.class).build();
         query.runQueryInBackground(new DroiQueryCallback<Comment>() {
             @Override
             public void result(List<Comment> list, DroiError droiError) {
                 if (droiError.isOk()) {
+                    Log.i("chenpei", "droi" + droiError.toString());
                     if (list.size() > 0) {
                         if (offset == 0) {
                             mAdapter.clear();
@@ -134,12 +144,6 @@ public class CommentListFragment extends Fragment {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        fetchComment();
-    }
-
-    @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof OnFragmentInteractionListener) {
@@ -154,5 +158,18 @@ public class CommentListFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        fetchComment();
+        DroiAnalytics.onFragmentStart(getActivity(), "CommentListFragment");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        DroiAnalytics.onFragmentEnd(getActivity(), "CommentListFragment");
     }
 }

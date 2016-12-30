@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.droi.film.R;
 import com.droi.film.interfaces.OnFragmentInteractionListener;
+import com.droi.sdk.analytics.DroiAnalytics;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -77,5 +78,16 @@ public class BindCompleteFragment extends BackHandledFragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        DroiAnalytics.onFragmentStart(getActivity(), "BindCompleteFragment");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        DroiAnalytics.onFragmentEnd(getActivity(), "BindCompleteFragment");
     }
 }

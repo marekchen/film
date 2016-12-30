@@ -18,6 +18,7 @@ import com.droi.film.fragment.BindCompleteFragment;
 import com.droi.film.fragment.BindEmailFragment;
 import com.droi.film.interfaces.BackHandlerInterface;
 import com.droi.film.interfaces.OnFragmentInteractionListener;
+import com.droi.sdk.analytics.DroiAnalytics;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -52,18 +53,6 @@ public class BindEmailActivity extends FragmentActivity implements OnFragmentInt
         });
         fm = getSupportFragmentManager();
         displayBindEmailFragment();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        //DroiAnalytics.onResume(this);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        //DroiAnalytics.onPause(this);
     }
 
     private static void displayBindEmailFragment() {
@@ -125,5 +114,17 @@ public class BindEmailActivity extends FragmentActivity implements OnFragmentInt
         } else {
             displayBindEmailFragment();
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        DroiAnalytics.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        DroiAnalytics.onPause(this);
     }
 }

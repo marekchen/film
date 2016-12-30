@@ -51,13 +51,13 @@ public class LoginFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-       // DroiAnalytics.onFragmentStart(getActivity(), "LoginFragment");
+        DroiAnalytics.onFragmentStart(getActivity(), "LoginFragment");
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        //DroiAnalytics.onFragmentEnd(getActivity(), "LoginFragment");
+        DroiAnalytics.onFragmentEnd(getActivity(), "LoginFragment");
     }
 
     @Override

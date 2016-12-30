@@ -35,7 +35,6 @@ public class BindPhoneNumFragment extends BackHandledFragment {
     Context mContext;
 
     public BindPhoneNumFragment() {
-        // Required empty public constructor
     }
 
     public static BindPhoneNumFragment newInstance() {
@@ -74,26 +73,14 @@ public class BindPhoneNumFragment extends BackHandledFragment {
             @Override
             public void result(Boolean aBoolean, DroiError droiError) {
                 if (aBoolean && droiError.isOk()) {
-                    /*DroiError error = user.validatePhoneNumber();
-                    if (error.isOk()) {
-                        //跳转 pincode验证fragment
-                        Log.i(TAG, "sendPinCode:success");
-                        if (mListener != null) {
-                            mListener.onFragmentInteraction(1);
-                        }
-                    } else {
-                        Log.i(TAG, "sendPinCode:failed:" + error.toString());
-                        Toast.makeText(getActivity(), "失败", Toast.LENGTH_SHORT).show();
-                    }*/
                     user.validatePhoneNumberInBackground(new DroiCallback<Boolean>() {
                         @Override
                         public void result(Boolean aBoolean, DroiError droiError) {
                             hideInValidationProgress();
                             if (droiError.isOk()) {
-                                //跳转 pincode验证fragment
                                 Log.i(TAG, "sendPinCode:success");
                                 if (mListener != null) {
-                                  //  mListener.onFragmentInteraction(1);
+
                                 }
                             } else {
                                 Log.i(TAG, "sendPinCode:failed:" + droiError.toString());

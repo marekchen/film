@@ -55,18 +55,6 @@ public class BindPhoneNumActivity extends FragmentActivity implements OnFragment
         displayBindPhoneNumFragment();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        DroiAnalytics.onResume(this);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        DroiAnalytics.onPause(this);
-    }
-
     private static void displayBindPhoneNumFragment() {
         FragmentTransaction transaction = fm.beginTransaction();
         Fragment bindNumFragment = BindPhoneNumFragment.newInstance();
@@ -127,4 +115,17 @@ public class BindPhoneNumActivity extends FragmentActivity implements OnFragment
             displayBindPhoneNumFragment();
         }
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        DroiAnalytics.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        DroiAnalytics.onPause(this);
+    }
+
 }

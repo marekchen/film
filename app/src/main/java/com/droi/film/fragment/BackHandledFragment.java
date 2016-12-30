@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 
 import com.droi.film.interfaces.BackHandlerInterface;
+import com.droi.sdk.analytics.DroiAnalytics;
 
 /**
  * Created by chenpei on 16/9/14.
@@ -42,5 +43,4 @@ public abstract class BackHandledFragment extends Fragment {
         super.onDetach();
         mBackHandlerInterface = null;
     }
-
 }

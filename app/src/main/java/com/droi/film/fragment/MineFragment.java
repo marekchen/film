@@ -11,26 +11,28 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
 import com.droi.film.R;
+import com.droi.film.activity.AboutUsActivity;
+import com.droi.film.activity.CommentListActivity;
 import com.droi.film.activity.LoginActivity;
 import com.droi.film.activity.ProfileActivity;
 
 import com.droi.film.model.CastBean;
-import com.droi.film.model.Comment;
 import com.droi.film.model.FilmBean;
 import com.droi.film.model.FilmUser;
 import com.droi.film.view.CircleImageView;
 import com.droi.sdk.DroiCallback;
 import com.droi.sdk.DroiError;
-import com.droi.sdk.core.DroiCloud;
+import com.droi.sdk.analytics.DroiAnalytics;
 import com.droi.sdk.core.DroiReferenceObject;
 import com.droi.sdk.core.DroiUser;
-/*import com.droi.sdk.feedback.DroiFeedback;
+import com.droi.sdk.feedback.DroiFeedback;
 import com.droi.sdk.push.DroiPush;
-import com.droi.sdk.selfupdate.DroiUpdate;*/
+import com.droi.sdk.selfupdate.DroiUpdate;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -71,13 +73,13 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     public void onResume() {
         super.onResume();
         refreshView();
-        //DroiAnalytics.onFragmentStart(getActivity(), "MineFragment");
+        DroiAnalytics.onFragmentStart(getActivity(), "MineFragment");
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        //DroiAnalytics.onFragmentEnd(getActivity(), "MineFragment");
+        DroiAnalytics.onFragmentEnd(getActivity(), "MineFragment");
     }
 
     /**
@@ -110,7 +112,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
 
     private void initUI(View view) {
         view.findViewById(R.id.mine_frag_follow).setOnClickListener(this);
-        view.findViewById(R.id.mine_frag_answer).setOnClickListener(this);
+        view.findViewById(R.id.mine_frag_comment).setOnClickListener(this);
         view.findViewById(R.id.mine_frag_update).setOnClickListener(this);
         view.findViewById(R.id.mine_frag_feedback).setOnClickListener(this);
         view.findViewById(R.id.mine_frag_upload).setOnClickListener(this);
@@ -118,13 +120,13 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         view.findViewById(R.id.mine_about_us).setOnClickListener(this);
         view.findViewById(R.id.head_icon).setOnClickListener(this);
         view.findViewById(R.id.right_layout).setOnClickListener(this);
-        /*pushSwitch.setChecked(DroiPush.getPushEnabled(mContext));
+        pushSwitch.setChecked(DroiPush.getPushEnabled(mContext));
         pushSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 DroiPush.setPushEnabled(mContext, isChecked);
             }
-        });*/
+        });
     }
 
     @Override
@@ -140,17 +142,11 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                     toLogin();
                 }
                 break;
-            case R.id.mine_frag_follow:
-                Log.i("test", "follow");
-                /*Intent followIntent = new Intent(getActivity(), MyFollowActivity.class);
-                startActivity(followIntent);*/
+            case R.id.mine_frag_comment:
+                Intent answerIntent = new Intent(getActivity(), CommentListActivity.class);
+                startActivity(answerIntent);
                 break;
-            case R.id.mine_frag_answer:
-                Log.i("test", "answer");
-                /*Intent answerIntent = new Intent(getActivity(), MyAnswerActivity.class);
-                startActivity(answerIntent);*/
-                break;
-/*            case R.id.mine_frag_update:
+            case R.id.mine_frag_update:
                 //手动更新
                 DroiUpdate.manualUpdate(mContext);
                 break;
@@ -166,7 +162,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 Log.i("test", "about");
                 Intent aboutUsIntent = new Intent(getActivity(), AboutUsActivity.class);
                 startActivity(aboutUsIntent);
-                break;*/
+                break;
             case R.id.mine_frag_upload:
                 Log.i("TEST", "mine_frag_upload");
                 //uploadBanner();
@@ -180,13 +176,13 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                         upload1();
                     }
                 }.start();*/
-                Comment comment = new Comment("170c4787bbc4d5398c44965f", "dddddd", DroiUser.getCurrentUser(FilmUser.class), 3);
+/*                Comment comment = new Comment("170c4787bbc4d5398c44965f", "dddddd", DroiUser.getCurrentUser(FilmUser.class), 3);
                 DroiCloud.callCloudServiceInBackground("compute_star.lua", comment, new DroiCallback<Comment>() {
                     @Override
                     public void result(Comment droiObject, DroiError droiError) {
                         Log.i("chenpei", droiError.toString());
                     }
-                }, Comment.class);
+                }, Comment.class);*/
                 break;
             default:
                 break;

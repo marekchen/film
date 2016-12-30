@@ -25,12 +25,12 @@ repositories {
         dirs 'libs'
     }
     maven { url 'https://jitpack.io' }
-/*    maven {
-        url "https://github.com/DroiBaaS/DroiBaaS-SDK-Android/raw/master/"
-    }*/
     maven {
-        url "http://gitlab.droi.com/DroiBaaS/DroiBaaS-SDK-Android/raw/master/"
+        url "https://github.com/DroiBaaS/DroiBaaS-SDK-Android/raw/master/"
     }
+/*    maven {
+        url "http://gitlab.droi.com/DroiBaaS/DroiBaaS-SDK-Android/raw/master/"
+    }*/
 }
 
 dependencies {
@@ -47,8 +47,12 @@ dependencies {
     compile 'com.android.support:design:24.2.1'
     compile 'com.jakewharton:butterknife:8.2.1'
     compile 'com.android.support:support-v4:24.2.1'
-    compile 'com.droi.sdk:Core:1.0.3461'
+    compile 'com.droi.sdk:Core:+'
     compile 'com.droi.sdk:analytics:+'
+    compile 'com.droi.sdk:selfupdate:+'
+    compile 'com.droi.sdk:feedback:+'
+    compile 'com.droi.sdk:push:+'
+    compile 'com.droi.sdk:Utility:+'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
     compile 'com.android.support:recyclerview-v7:24.2.1'

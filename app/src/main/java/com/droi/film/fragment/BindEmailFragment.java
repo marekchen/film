@@ -14,6 +14,7 @@ import com.droi.film.R;
 import com.droi.film.interfaces.OnFragmentInteractionListener;
 import com.droi.sdk.DroiCallback;
 import com.droi.sdk.DroiError;
+import com.droi.sdk.analytics.DroiAnalytics;
 import com.droi.sdk.core.DroiUser;
 
 import butterknife.BindView;
@@ -31,7 +32,6 @@ public class BindEmailFragment extends BackHandledFragment {
     Context mContext;
 
     public BindEmailFragment() {
-        // Required empty public constructor
     }
 
     public static BindEmailFragment newInstance() {
@@ -69,17 +69,6 @@ public class BindEmailFragment extends BackHandledFragment {
             @Override
             public void result(Boolean aBoolean, DroiError droiError) {
                 if (aBoolean && droiError.isOk()) {
-                    /*DroiError error = user.validateEmail();
-                    if (error.isOk()) {
-                        //跳转 pincode验证fragment
-                        Log.i(TAG, "sendPinCode:success");
-                        if (mListener != null) {
-                            mListener.onFragmentInteraction(1);
-                        }
-                    } else {
-                        Log.i(TAG, "sendPinCode:failed:" + error.toString());
-                        Toast.makeText(getActivity(), "失败", Toast.LENGTH_SHORT).show();
-                    }*/
                     user.validateEmailInBackground(new DroiCallback<Boolean>() {
                         @Override
                         public void result(Boolean aBoolean, DroiError droiError) {
@@ -137,5 +126,18 @@ public class BindEmailFragment extends BackHandledFragment {
 
     public void hideInValidationProgress() {
         mProgressDialog.cancel();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        DroiAnalytics.onFragmentStart(getActivity(), "BindEmailFragment");
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        DroiAnalytics.onFragmentEnd(getActivity(), "BindEmailFragment");
     }
 }

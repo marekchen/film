@@ -39,22 +39,11 @@ public class Comment extends DroiObject {
     //短评
     public Comment(String refId, String comment, FilmUser commenter, int star) {
         this.refId = refId;
-        this.type = 1;
-        this.comment = comment;
-        this.commenterId = commenter.getObjectId();
-        this.commenter = commenter;
-        this.star = star;
-    }
-
-    //影评
-    public Comment(String refId, String comment, FilmUser commenter, int star, String title) {
-        this.refId = refId;
         this.type = 2;
         this.comment = comment;
         this.commenterId = commenter.getObjectId();
         this.commenter = commenter;
         this.star = star;
-        this.title = title;
     }
 
     public Comment() {
