@@ -20,6 +20,9 @@ cache:
   directories:
   - .autoconf
   - $HOME/.m2
+  - $HOME/.gradle/caches/
+  - $HOME/.gradle/wrapper/
+  - $HOME/.android/build-cache
 
 deploy:
   provider: releases
