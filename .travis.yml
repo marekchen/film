@@ -15,7 +15,7 @@ before_install:
 
 script:
   - ./gradlew assembleRelease
-  
+
 cache:
   directories:
   - .autoconf
@@ -23,7 +23,8 @@ cache:
 
 deploy:
   provider: releases
-  api_key: "331f1a0e692b7d50c4a308fdb1425107b52c2038"
+  api_key:
+    secure: 331f1a0e692b7d50c4a308fdb1425107b52c2038
   file: app/build/outputs/apk/app-release.apk
   skip_cleanup: true
   on:
