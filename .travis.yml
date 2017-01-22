@@ -2,6 +2,8 @@ language: android
 jdk:
   - oraclejdk8
 
+sudo: required
+
 android:
   components:
     - tools
@@ -23,6 +25,9 @@ cache:
   - $HOME/.gradle/caches/
   - $HOME/.gradle/wrapper/
   - $HOME/.android/build-cache
+  - ${TRAVIS_BUILD_DIR}/gradle/caches/
+  - ${TRAVIS_BUILD_DIR}/gradle/wrapper/dists/
+  - ${TRAVIS_BUILD_DIR}/android-sdk/extras/
 
 deploy:
   provider: releases
