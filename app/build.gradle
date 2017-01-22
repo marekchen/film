@@ -28,9 +28,9 @@ repositories {
     maven {
         url "https://github.com/DroiBaaS/DroiBaaS-SDK-Android/raw/master/"
     }
-/*    maven {
+    maven {
         url "http://gitlab.droi.com/DroiBaaS/DroiBaaS-SDK-Android/raw/master/"
-    }*/
+    }
 }
 
 dependencies {
@@ -47,7 +47,7 @@ dependencies {
     compile 'com.android.support:design:24.2.1'
     compile 'com.jakewharton:butterknife:8.2.1'
     compile 'com.android.support:support-v4:24.2.1'
-    compile 'com.droi.sdk:Core:+'
+    compile 'com.droi.sdk:Core:1.0.3479'
     compile 'com.droi.sdk:analytics:+'
     compile 'com.droi.sdk:selfupdate:+'
     compile 'com.droi.sdk:feedback:+'

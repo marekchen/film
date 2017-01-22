@@ -70,11 +70,18 @@ public class FilmFragment extends Fragment {
         movieGridView.setAdapter(movieAdapter);
 
         DroiCondition cond = DroiCondition.cond("type", DroiCondition.Type.EQ, type);
-        DroiQuery query = DroiQuery.Builder.newBuilder().where(cond).query(FilmBean.class).build();
+        DroiQuery query = DroiQuery.Builder.newBuilder().localStorage().where(cond).query(FilmBean.class).build();
         query.runQueryInBackground(new DroiQueryCallback<FilmBean>() {
             @Override
             public void result(List<FilmBean> list, DroiError droiError) {
                 Log.i("chenpei", "query:" + droiError.toString());
+                Log.i("chenpei", "2222222222222222");
+/*                for (FilmBean film : list) {
+                    Log.i("chenpei", "film:" + film.getTitle());
+                    film.setLocalStorage(true);
+                    DroiError error = film.save();
+                    Log.i("chenpei", "error:" + error.toString());
+                }*/
                 if (droiError.isOk() && list.size() > 0) {
                     movieAdapter.append(list);
                     movieAdapter.notifyDataSetChanged();

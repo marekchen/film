@@ -16,7 +16,6 @@ import com.bumptech.glide.Glide;
 import com.droi.film.R;
 import com.droi.film.activity.FilmDetailActivity;
 import com.droi.film.model.Banner;
-import com.droi.film.model.Comment;
 import com.droi.film.model.FilmBean;
 import com.droi.film.view.Indicator;
 

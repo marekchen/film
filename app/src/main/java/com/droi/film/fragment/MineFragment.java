@@ -28,6 +28,12 @@ import com.droi.film.view.CircleImageView;
 import com.droi.sdk.DroiCallback;
 import com.droi.sdk.DroiError;
 import com.droi.sdk.analytics.DroiAnalytics;
+import com.droi.sdk.core.DroiCondition;
+import com.droi.sdk.core.DroiGroup;
+import com.droi.sdk.core.DroiObject;
+import com.droi.sdk.core.DroiPermission;
+import com.droi.sdk.core.DroiQuery;
+import com.droi.sdk.core.DroiQueryCallback;
 import com.droi.sdk.core.DroiReferenceObject;
 import com.droi.sdk.core.DroiUser;
 import com.droi.sdk.feedback.DroiFeedback;
@@ -40,6 +46,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -159,12 +166,14 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 DroiFeedback.callFeedback(mContext);
                 break;
             case R.id.mine_about_us:
-                Log.i("test", "about");
+                fetch();
+                /*Log.i("test", "about");
                 Intent aboutUsIntent = new Intent(getActivity(), AboutUsActivity.class);
-                startActivity(aboutUsIntent);
+                startActivity(aboutUsIntent);*/
                 break;
             case R.id.mine_frag_upload:
                 Log.i("TEST", "mine_frag_upload");
+                fetch();
                 //uploadBanner();
                 //uploadAppInfo();
                 //uploadAppType();
@@ -186,6 +195,64 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 break;
             default:
                 break;
+        }
+    }
+
+    void add() {
+
+        DroiQuery query = DroiQuery.Builder.newBuilder().cloudStorage().query(DroiGroup.class)
+                .where("Name", DroiCondition.Type.EQ, "manager").build();
+        query.runQueryInBackground(new DroiQueryCallback<DroiGroup>() {
+            @Override
+            public void result(final List<DroiGroup> list, final DroiError droiError) {
+                Log.i("chenpei", "0" + droiError.toString());
+                DroiGroup droiGroup;
+                if (list.size() > 0) {
+                    Log.i("chenpei", "1");
+                    droiGroup = list.get(0);
+                } else {
+                    Log.i("chenpei", "2");
+                    droiGroup = new DroiGroup("manager");
+                }
+                DroiPermission droiPermission = new DroiPermission();
+                droiGroup.addUser(DroiUser.getCurrentUser().getObjectId());
+                droiGroup.saveInBackground(new DroiCallback<Boolean>() {
+                    @Override
+                    public void result(Boolean aBoolean, final DroiError droiError) {
+                        Log.i("chenpei", "3" + droiError.toString());
+                    }
+                });
+
+            }
+        });
+    }
+
+    void fetch() {
+        final DroiUser droiUser = DroiUser.getCurrentUser();
+        if (droiUser != null && droiUser.isAuthorized() && !droiUser.isAnonymous()) {
+            if (droiUser.getUserId().equals("admin")) {
+                return;
+            }
+            DroiGroup.getGroupIdsByUserObjectIdInBackground(droiUser.getObjectId(), new DroiCallback<List<String>>() {
+                @Override
+                public void result(List<String> list, DroiError droiError) {
+                    Log.i("chenpei", ">>>size" + list.size());
+                    Log.i("chenpei", ">>>" + droiError.toString());
+                    if (droiError.isOk()) {
+                        for (String string :
+                                list) {
+                            Log.i("chenpei", ">>>" + string);
+                            if (string.equals("875941fea855e99f2df23a4e")) {
+                                Log.i("chenpei", ">>>" + true);
+                            }
+                        }
+                    } else {
+
+                    }
+                }
+            });
+        } else {
+            Log.i("chenpei", ">>>2");
         }
     }
 

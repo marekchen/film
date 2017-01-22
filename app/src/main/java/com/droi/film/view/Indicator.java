@@ -6,7 +6,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.droi.film.R;
-import com.droi.film.util.UnitUtil;
+import com.droi.film.utils.UnitUtil;
 
 public class Indicator extends LinearLayout {
     private int mCount;
